@@ -8,8 +8,8 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = {
-    "SF Pro Display:size=8.5",
-    "FontAwesome:size=8.5",
+    "SF Pro Display:size=9",
+    "FontAwesome:size=9",
     };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#222222";
@@ -32,15 +32,16 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     iscentered isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            0, 1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0, 0,           -1 },
-	{ "Chromium",  "kanbanflow.com",       NULL,       1 << 3, 0,       0,           1 },
-	{ "Chromium",  "jira.wisers.com__secure_RapidBoard",       NULL,       1 << 2, 0,       0,           1 },
-	{ "Chromium",  "jira.wisers.com__display",       NULL,       1 << 4, 0,       0,           1 },
-	{ "Chromium",  "teams.microsoft.com",       NULL,       1 << 1,       0, 0,           1 },
-    { "Chromium",  "paper.dropbox.com", NULL, 1<<4, 0, 0, 1},
-    { "prompt",     NULL,   NULL, 0, 1, 1, -1},
+	/* class        instance       title       tags mask     iscentered isfloating   monitor */
+	{ "Gimp",       NULL,          NULL,       0,            1,         1,           -1 },
+	{ "Firefox",    NULL,          NULL,       1 << 8,       0,         0,           -1 },
+	{ "Chromium",  "kanbanflow",   NULL,       1 << 3,       0,         0,           1  },
+	{ "Chromium",  "owa",         NULL,       1 << 5,       0,         0,           1  },
+	{ "Chromium",  "RapidBoard",   NULL,       1 << 2,       0,         0,           1  },
+	{ "Chromium",  "display",      NULL,       1 << 4,       0,         0,           1  },
+	{ "Chromium",  "teams",        NULL,       1 << 1,       0,         0,           1  },
+    { "Chromium",  "paper",        NULL,       1<<4,         0,         0,           1  },
+    { "prompt",     NULL,          NULL,       0,            1,         1,           -1 },
 };
 
 /* layout(s) */
