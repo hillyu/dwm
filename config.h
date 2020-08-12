@@ -32,26 +32,29 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class        instance       title       tags mask     iscentered isfloating   monitor */
-	{ "Gimp",       NULL,          NULL,       0,            1,         1,           -1 },
-	{ "imv",        NULL,          NULL,       0,            1,         1,           -1 },
-	{ "feh",        NULL,          NULL,       0,            1,         1,           -1 },
-	{ "tabbed",     NULL,          NULL,       0,            0,         1,           -1 },
-	{ "Sxiv",       NULL,          NULL,       0,            1,         1,           -1 },
-	{ "Firefox",    NULL,          NULL,       1 << 8,       0,         0,           -1 },
-	{ "Chromium",  "kanbanflow",   NULL,       1 << 3,       0,         0,           1  },
-	{ "Chromium",  "owa",          NULL,       1 << 5,       0,         0,           1  },
-	{ "Chromium",  "RapidBoard",   NULL,       1 << 2,       0,         0,           1  },
-	{ "Chromium",  "display",      NULL,       1 << 4,       0,         0,           1  },
-	{ "Chromium",  "teams",        NULL,       1 << 1,       0,         0,           1  },
-    { "Chromium",  "paper",        NULL,       1<<4,         0,         0,           1  },
-    { "prompt",     NULL,          NULL,       0,            1,         1,           -1 },
+	/* class          instance       title       tags mask     iscentered isfloating   monitor */
+	{ "Gimp",         NULL,          NULL,       1 << 6,            1,         1,           -1 },
+	{ "imv",          NULL,          NULL,       0,            1,         1,           -1 },
+	{ "feh",          NULL,          NULL,       0,            1,         1,           -1 },
+	{ "tabbed",       NULL,          NULL,       0,            0,         1,           -1 },
+	{ "Sxiv",         NULL,          NULL,       0,            1,         1,           -1 },
+	{ "Firefox",      NULL,          NULL,       1 << 8,       0,         0,           -1 },
+	{ "Chromium",     "kanbanflow",  NULL,       1 << 3,       0,         0,           1  },
+	{ "Chromium",     "owa",         NULL,       1 << 5,       0,         0,           1  },
+	{ "Chromium",     "RapidBoard",  NULL,       1 << 2,       0,         0,           1  },
+	{ "Chromium",     "display",     NULL,       1 << 4,       0,         0,           1  },
+	{ "Chromium",     "teams",       NULL,       1 << 1,       0,         0,           1  },
+	{ "Chromium",     "wechat",      NULL,       1 << 7,       1,         1,           1  },
+	{ "Chromium",     "whatsapp",    NULL,       1 << 7,       1,         1,           1  },
+    { "Chromium",     "paper",       NULL,       1<<4,         0,         0,           1  },
+    { "prompt",       NULL,          NULL,       0,            1,         1,           -1 },
+    { "Pavucontrol",  NULL,          NULL,       0,            1,         1,           -1 },
 };
 
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
 //#include "fibonacci.c"
 static const Layout layouts[] = {
@@ -87,6 +90,14 @@ static const char *volume_down[]  = {"volume", "5%-" };
 static const char *volume_up[]  = {"volume", "5%+" };
 static const char *mute[]  = {"mute", NULL};
 static const char *micmute[]  = {"micmute", NULL};
+static const char *activityMon[]  = {"st", "-c", "prompt", "htop"};
+static const char *conf[]  = {"st", "-c", "prompt", "vim", "/home/hill/src/dwm/config.h"};
+static const char *diary[]  = {"st", "-c", "prompt", "vim", "-c" ":VimwikiDiaryIndex"};
+static const char *arandr[]  = {"autorandr", "-c"};
+static const char *syncpackage[]  = {"st_hold", "yay", "-Syu"};
+static const char *nnn[]  = {"st", "-g", "159x45", "-c", "prompt", "n"};
+static const char *errjournal[]  = {"st", "journalctl", "-xe"};
+
 
 
 
@@ -120,8 +131,15 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_e,      cyclelayout,    {.i = +1 } },
 	{ MODKEY,                       XK_w,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
-	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
+	{ MODKEY,                       XK_d,      spawn,          {.v = diary } },
+	{ MODKEY,                       XK_c,      spawn,          {.v = conf } },
+	{ MODKEY,                       XK_a,      spawn,          {.v = activityMon } },
+	{ MODKEY,                       XK_x,      spawn,          {.v = errjournal } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = arandr } },
+	{ MODKEY,                       XK_s,      spawn,          {.v = syncpackage } },
+	{ MODKEY,                       XK_n,      spawn,          {.v = nnn } },
+	//{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
+	//{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_f,      togglefullscr,     {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
