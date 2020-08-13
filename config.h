@@ -48,6 +48,7 @@ static const Rule rules[] = {
 	{ "Chromium",     "wechat",      NULL,       1 << 7,       1,         1,           1  },
 	{ "Chromium",     "whatsapp",    NULL,       1 << 7,       1,         1,           1  },
     { "Chromium",     "paper",       NULL,       1<<4,         0,         0,           1  },
+    { "Chromium",     "douban",      NULL,       1<<8,         0,         0,           0  },
     { "prompt",       NULL,          NULL,       0,            1,         1,           -1 },
     { "Pavucontrol",  NULL,          NULL,       0,            1,         1,           -1 },
 };
