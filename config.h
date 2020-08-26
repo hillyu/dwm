@@ -5,7 +5,7 @@
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
+static const int swallowfloating    = 1;        /* 1 means swallow floating windows by default */
 static const unsigned int gappih    = 20;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 20;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 30;       /* horiz outer gap between windows and screen edge */
@@ -47,16 +47,17 @@ static const Rule rules[] = {
 	{ "feh",          NULL,          NULL,   0,            1,         1,           0,           0,         -1 },
 	{ "tabbed",       NULL,          NULL,   0,            0,         1,           0,           0,         -1 },
 	{ "Sxiv",         NULL,          NULL,   0,            1,         1,           0,           0,         -1 },
+	{ NULL,           "owa",         NULL,   1 << 1,       0,         0,           0,           0,         1  },
+	{ NULL,           "teams",       NULL,   1 << 1,       0,         0,           0,           0,         1  },
+	{ NULL,           "onedrive",    NULL,   1 << 6,       0,         0,           0,           0,         1  },
+	{ NULL,           "RapidBoard",  NULL,   1 << 2,       0,         0,           0,           0,         1  },
+	{ NULL,           "display",     NULL,   1 << 3,       0,         0,           0,           0,         1  },
+    { NULL,           "paper",       NULL,   1 << 4,       0,         0,           0,           0,         1  },
+	{ NULL,           "kanbanflow",  NULL,   1 << 4,       0,         0,           0,           0,         1  },
+	{ NULL,           "wechat",      NULL,   1 << 7,       1,         1,           0,           0,         1  },
+	{ NULL,           "whatsapp",    NULL,   1 << 7,       1,         1,           0,           0,         1  },
 	{ "Firefox",      NULL,          NULL,   1 << 8,       0,         0,           0,           0,         -1 },
-	{ "Chromium",     "kanbanflow",  NULL,   1 << 3,       0,         0,           0,           0,         1  },
-	{ "Chromium",     "owa",         NULL,   1 << 5,       0,         0,           0,           0,         1  },
-	{ "Chromium",     "RapidBoard",  NULL,   1 << 2,       0,         0,           0,           0,         1  },
-	{ "Chromium",     "display",     NULL,   1 << 4,       0,         0,           0,           0,         1  },
-	{ NULL,           "teams",       NULL,   1 << 1,       0,         1,           1,           0,         1  },
-	{ "Chromium",     "wechat",      NULL,   1 << 7,       1,         1,           0,           0,         1  },
-	{ "Chromium",     "whatsapp",    NULL,   1 << 7,       1,         1,           0,           0,         1  },
-    { "Chromium",     "paper",       NULL,   1<<4,         0,         0,           0,           0,         1  },
-    { "Chromium",     "douban",      NULL,   1<<8,         1,         1,           0,           0,         0  },
+    { NULL,           "douban",      NULL,   1<<8,         1,         1,           0,           0,         0  },
     { "Pavucontrol",  NULL,          NULL,   0,            1,         1,           0,           0,         -1 },
     { "prompt",       NULL,          NULL,   0,            1,         1,           1,          0,          -1 },
 	{ NULL,           NULL,   "Event Tester",0,            0,         0,           0,          1,           -1 }, /* xev */
