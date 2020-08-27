@@ -1,17 +1,19 @@
-From 1c88fe3db7d3b478beb54362fe983bde28dd10a0 Mon Sep 17 00:00:00 2001
+From 7f8265ad4636c699a4cbac7a71517e88614ff9dc Mon Sep 17 00:00:00 2001
 From: Hill <hillyu@live.com>
-Date: Thu, 27 Aug 2020 20:12:19 +0800
-Subject: [PATCH] fixed losefulscreen
+Date: Thu, 27 Aug 2020 20:16:44 +0800
+Subject: [PATCH] mypatch
 
 ---
- dwm.c | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+ dwm.c                                         | 14 ++--
+ patch/dwm-losefullscreen-exclude-mon-6.2.diff | 69 +++++++++++++++++++
+ 2 files changed, 79 insertions(+), 4 deletions(-)
+ create mode 100644 patch/dwm-losefullscreen-exclude-mon-6.2.diff
 
 diff --git a/dwm.c b/dwm.c
-index 90869d2..fd3cc97 100644
+index 664c527..3134287 100644
 --- a/dwm.c
 +++ b/dwm.c
-@@ -553,8 +553,9 @@ buttonpress(XEvent *e)
+@@ -426,8 +426,9 @@ buttonpress(XEvent *e)
  	click = ClkRootWin;
  	/* focus monitor if necessary */
  	if ((m = wintomon(ev->window)) && m != selmon) {
@@ -22,7 +24,7 @@ index 90869d2..fd3cc97 100644
  		focus(NULL);
  	}
  	if (ev->window == selmon->barwin) {
-@@ -972,8 +973,9 @@ enternotify(XEvent *e)
+@@ -764,8 +765,9 @@ enternotify(XEvent *e)
  	c = wintoclient(ev->window);
  	m = c ? c->mon : wintomon(ev->window);
  	if (m != selmon) {
@@ -33,7 +35,7 @@ index 90869d2..fd3cc97 100644
  	} else if (!c || c == selmon->sel)
  		return;
  	focus(c);
-@@ -1033,8 +1035,9 @@ focusmon(const Arg *arg)
+@@ -825,8 +827,9 @@ focusmon(const Arg *arg)
  		return;
  	if ((m = dirtomon(arg->i)) == selmon)
  		return;
@@ -42,9 +44,9 @@ index 90869d2..fd3cc97 100644
  	selmon = m;
 +	unfocus(oldc, 1);
  	focus(NULL);
- 	warp(selmon->sel);
  }
-@@ -1368,8 +1371,9 @@ motionnotify(XEvent *e)
+ 
+@@ -1126,8 +1129,9 @@ motionnotify(XEvent *e)
  	if (ev->window != root)
  		return;
  	if ((m = recttomon(ev->x_root, ev->y_root, 1, 1)) != mon && mon) {
@@ -55,7 +57,7 @@ index 90869d2..fd3cc97 100644
  		focus(NULL);
  	}
  	mon = m;
-@@ -2216,6 +2220,8 @@ unfocus(Client *c, int setfocus)
+@@ -1754,6 +1758,8 @@ unfocus(Client *c, int setfocus)
  {
  	if (!c)
  		return;
@@ -64,6 +66,3 @@ index 90869d2..fd3cc97 100644
  	grabbuttons(c, 0);
  	XSetWindowBorder(dpy, c->win, scheme[SchemeNorm][ColBorder].pixel);
  	if (setfocus) {
--- 
-2.28.0
-
