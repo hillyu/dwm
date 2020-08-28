@@ -78,7 +78,7 @@ static const Layout layouts[] = {
      //{ "[@]",      spiral },
 	{ "",      monocle },
      //{ "[\\]",      dwindle },
-	{ "",      NULL },    /* no layout function means floating behavior */
+    { "",      NULL }
 };
 
 /* key definitions */
