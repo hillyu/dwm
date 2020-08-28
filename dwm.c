@@ -2222,6 +2222,8 @@ unfocus(Client *c, int setfocus)
 		return;
 	if (c->isfullscreen && ISVISIBLE(c) && c->mon == selmon)
 		setfullscreen(c, 0);
+	if (c->isfloating && ISVISIBLE(c) && c->mon == selmon)
+		togglefloating(NULL);
 	grabbuttons(c, 0);
 	XSetWindowBorder(dpy, c->win, scheme[SchemeNorm][ColBorder].pixel);
 	if (setfocus) {
