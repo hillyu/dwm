@@ -1,0 +1,25 @@
+From ddd32696804259fae0e3dc88158629da5e406f5e Mon Sep 17 00:00:00 2001
+From: Hill <hillyu@live.com>
+Date: Fri, 28 Aug 2020 13:25:23 +0800
+Subject: [PATCH] add losefloating
+
+---
+ dwm.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/dwm.c b/dwm.c
+index fd3cc97..fc74a0f 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -2222,6 +2222,8 @@ unfocus(Client *c, int setfocus)
+ 		return;
+ 	if (c->isfullscreen && ISVISIBLE(c) && c->mon == selmon)
+ 		setfullscreen(c, 0);
++	if (c->isfloating && ISVISIBLE(c) && c->mon == selmon)
++		togglefloating(NULL);
+ 	grabbuttons(c, 0);
+ 	XSetWindowBorder(dpy, c->win, scheme[SchemeNorm][ColBorder].pixel);
+ 	if (setfocus) {
+-- 
+2.28.0
+
