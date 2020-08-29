@@ -19,11 +19,16 @@ static const char *fonts[]          = {
     "FontAwesome:size=9",
     };
 static const char dmenufont[]       = "monospace:size=10";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
+//static const char col_gray1[]       = "#222222";
+static const char col_gray1[]       = "#2d303b";
+//static const char col_gray2[]       = "#444444";
+static const char col_gray2[]       = "#5294e2";
+//static const char col_gray3[]       = "#bbbbbb";
+static const char col_gray3[]       = "#c4cbd4";
+//#7c818c
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#268BD2";
+static const char col_cyan[]        = "#4084d6";
+//#268BD2
 static const char border[]          = "#1f75fe";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
@@ -47,7 +52,8 @@ static const Rule rules[] = {
 	{ "feh",          NULL,          NULL,   0,            1,         1,           0,           0,         -1 },
 	{ "tabbed",       NULL,          NULL,   0,            0,         1,           0,           0,         -1 },
 	{ "Sxiv",         NULL,          NULL,   0,            0,         1,           0,           0,         -1 },
-	{ "prompt",      "ncmpcpp",      NULL,   1 << 8,       0,         1,           1,           0,           0 },
+    //{ "prompt",       "ncmpcpp",      NULL,   1 << 8,       1,         1,           0,           0,           0 },
+    { NULL,          "ncmpcpp",      NULL,   1 << 8,       0,         1,           0,           0,           0 },
 	{ "Sxiv",        "cover",        NULL,   1 << 8,       0,         1,           0,           0,         0 },
 	{ NULL,           "owa",         NULL,   1 << 1,       0,         0,           0,           0,         1  },
 	{ NULL,           "teams",       NULL,   1 << 1,       0,         0,           0,           0,         1  },
@@ -94,27 +100,29 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-//static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *dmenucmd[] = { "rofi", "-show", "combi", "-m", "-4"};
-static const char *tmux[]  = { "st", "-c", "prompt", "-g", "130x38", "tmux_run.sh"};
+static const char *dmenucmd[] = { "rofi", "-show", "combi", "-m", "-4", NULL};
+static const char *tmux[]  = { "st", "-c", "prompt", "-g", "130x38", "tmux_run.sh", NULL};
 static const char *termcmd[]  = { "st", NULL};
-static const char *snapshot_full[]  = { "flameshot", "full", "-c", "-p", "/home/hill/Pictures/screenshot/" };
-static const char *snapshot[]  = { "flameshot", "gui" };
-static const char *brightness_minus[]  = { "brightness", "1%-" };
-static const char *brightness_plus[]  = { "brightness", "1%+" };
-static const char *volume_down[]  = {"volume", "5%-" };
-static const char *volume_up[]  = {"volume", "5%+" };
-static const char *mute[]  = {"volume", "mute"};
-static const char *micmute[]  = {"micmute", NULL};
-static const char *activityMon[]  = {"st", "-c", "prompt", "gotop"};
-static const char *conf[]  = {"st", "-c", "prompt", "vim", "/home/hill/src/dwm/config.h"};
-static const char *diary[]  = {"st", "-c", "prompt", "vim", "-c" ":VimwikiDiaryIndex"};
-static const char *arandr[]  = {"autorandr", "-c"};
-static const char *syncpackage[]  = {"st_hold", "yay", "-Syu"};
-static const char *nnn[]  = {"st", "-g", "150x43", "-c", "prompt", "n"};
-static const char *errjournal[]  = {"st", "-c", "prompt", "journalctl", "-xe"};
-static const char *reddit[]  = {"st", "-c" "prompt", "rtv"};
-
+static const char *snapshot_full[]  = { "flameshot", "full", "-c", "-p", "/home/hill/Pictures/screenshot/" , NULL};
+static const char *snapshot[]  = { "flameshot", "gui" , NULL};
+static const char *brightness_minus[]  = { "brightness", "1%-" , NULL};
+static const char *brightness_plus[]  = { "brightness", "1%+" , NULL};
+static const char *volume_down[]  = {"volume", "5%-" , NULL};
+static const char *volume_up[]  = {"volume", "5%+" , NULL};
+static const char *mute[]  = {"volume", "mute", NULL};
+static const char *micmute[]  = {"micmute", NULL, NULL};
+static const char *activityMon[]  = {"st", "-c", "prompt", "gotop", NULL};
+static const char *conf[]  = {"st", "-c", "prompt", "vim", "/home/hill/src/dwm/config.h", NULL};
+static const char *diary[]  = {"st", "-c", "prompt", "vim", "-c" ":VimwikiDiaryIndex", NULL};
+static const char *arandr[]  = {"autorandr", "-c", NULL};
+static const char *syncpackage[]  = {"st_hold", "yay", "-Syu", NULL};
+static const char *nnn[]  = {"st", "-g", "150x43", "-c", "prompt", "n", NULL};
+static const char *errjournal[]  = {"st", "-c", "prompt", "journalctl", "-xe", NULL};
+static const char *reddit[]  = {"st", "-c", "prompt", "rtv", NULL};
+static const char *m_prev[]  = {"mpc", "prev", NULL };
+static const char *m_play[]  = {"mpc", "toggle", NULL};
+static const char *m_next[]  = {"mpc", "next", NULL};
+static const char *mail[]  = {"st", "-c", "prompt", "neomutt", NULL};
 
 
 
@@ -129,13 +137,15 @@ static Key keys[] = {
     { 0,        XF86XK_AudioRaiseVolume,       spawn,          {.v = volume_up } },
     { 0,        XF86XK_AudioLowerVolume,       spawn,          {.v = volume_down } },
     { 0,        XF86XK_AudioMute,              spawn,          {.v = mute } },
+    { 0,        XF86XK_AudioPlay,              spawn,          {.v = m_play } },
+    { 0,        XF86XK_AudioNext,              spawn,          {.v = m_next } },
+    { 0,        XF86XK_AudioPrev,              spawn,          {.v = m_prev } },
     { 0,        XF86XK_AudioMicMute,           spawn,          {.v = micmute } },
     { 0,        XF86XK_MonBrightnessDown,      spawn,          {.v = brightness_minus } },
     { 0,        XF86XK_MonBrightnessUp,        spawn,          {.v = brightness_plus } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	//{ MODKEY,                       XK_semicolon,      swapfocus,      {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
 	{ MODKEY,                       XK_h,      incnmaster,     {.i = +1 } },
@@ -162,17 +172,15 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_y,      incrovgaps,     {.i = +2 } },
 	{ MODKEY|ShiftMask,             XK_o,      incrovgaps,     {.i = -2 } },
 	{ MODKEY,                       XK_e,      cyclelayout,    {.i = +1 } },
-	//{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	//{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} },
-	//{ MODKEY,                       XK_w,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_d,      spawn,          {.v = diary } },
-	{ MODKEY,                       XK_c,      spawn,          {.v = conf } },
-	{ MODKEY,                       XK_a,      spawn,          {.v = activityMon } },
-	{ MODKEY,                       XK_x,      spawn,          {.v = errjournal } },
-	{ MODKEY,                       XK_p,      spawn,          {.v = arandr } },
-	{ MODKEY,                       XK_r,      spawn,          {.v = reddit } },
-	{ MODKEY,                       XK_s,      spawn,          {.v = syncpackage } },
-	{ MODKEY,                       XK_n,      spawn,          {.v = nnn } },
+    { MODKEY,                       XK_d,      spawn,          {.v = diary } },
+    { MODKEY,                       XK_c,      spawn,          {.v = conf } },
+    { MODKEY,                       XK_a,      spawn,          {.v = activityMon } },
+    { MODKEY,                       XK_x,      spawn,          {.v = errjournal } },
+    { MODKEY,                       XK_p,      spawn,          {.v = arandr } },
+    { MODKEY,                       XK_r,      spawn,          {.v = reddit } },
+    { MODKEY,                       XK_s,      spawn,          {.v = syncpackage } },
+    { MODKEY,                       XK_n,      spawn,          {.v = nnn } },
+    { MODKEY,                       XK_m,      spawn,          {.v = mail } },
 	//{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
 	//{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_f,      togglefullscr,     {0} },
