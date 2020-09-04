@@ -52,7 +52,6 @@ static const Rule rules[] = {
 	{ "feh",          NULL,          NULL,   0,            1,         1,           0,           0,         -1 },
 	{ "tabbed",       NULL,          NULL,   0,            0,         1,           0,           0,         -1 },
 	{ "Sxiv",         NULL,          NULL,   0,            0,         1,           0,           0,         -1 },
-    //{ "prompt",       "ncmpcpp",      NULL,   1 << 8,       1,         1,           0,           0,           0 },
     { NULL,          "ncmpcpp",      NULL,   1 << 8,       0,         1,           0,           0,           0 },
 	{ "Sxiv",        "cover",        NULL,   1 << 8,       0,         1,           0,           0,         0 },
 	{ NULL,           "owa",         NULL,   1 << 1,       0,         0,           0,           0,         1  },
@@ -64,11 +63,13 @@ static const Rule rules[] = {
 	{ NULL,           "kanbanflow",  NULL,   1 << 2,       0,         0,           0,           0,         1  },
 	{ NULL,           "wechat",      NULL,   1 << 7,       1,         1,           0,           0,         1  },
 	{ NULL,           "whatsapp",    NULL,   1 << 7,       1,         1,           0,           0,         1  },
+    { NULL,    "merriam-webster",    NULL,   0,            1,         1,           0,           0,         -1  },
 	{ "Firefox",      NULL,          NULL,   1 << 8,       0,         0,           0,           0,         -1 },
     { NULL,           "douban",      NULL,   1<<8,         1,         1,           0,           0,         0  },
     { "Pavucontrol",  NULL,          NULL,   0,            1,         1,           0,           0,         -1 },
     { "prompt",       NULL,          NULL,   0,            1,         1,           1,          0,          -1 },
 	{ NULL,           NULL,   "Event Tester",0,            0,         0,           0,          1,           -1 }, /* xev */
+	//{ "Rofi",         "rofi",        NULL,   0,            0,         0,           0,          1,           -1 }, [> xev <]
 	{ "st",           NULL,          NULL,   0,            0,         0,           1,          0,           -1 },
 };
 
@@ -101,6 +102,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "rofi", "-show", "combi", "-m", "-4", NULL};
+static const char *clip[] = { "clipmenu", "-p", "clipboard", NULL};
 static const char *tmux[]  = { "st", "-c", "prompt", "-g", "130x38", "tmux_run.sh", NULL};
 static const char *termcmd[]  = { "st", NULL};
 static const char *snapshot_full[]  = { "flameshot", "full", "-c", "-p", "/home/hill/Pictures/screenshot/" , NULL};
@@ -181,6 +183,7 @@ static Key keys[] = {
     { MODKEY,                       XK_s,      spawn,          {.v = syncpackage } },
     { MODKEY,                       XK_n,      spawn,          {.v = nnn } },
     { MODKEY,                       XK_m,      spawn,          {.v = mail } },
+    { MODKEY,                       XK_v,      spawn,          {.v = clip } },
 	//{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
 	//{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_f,      togglefullscr,     {0} },
