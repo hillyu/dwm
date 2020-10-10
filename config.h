@@ -50,6 +50,7 @@ static const Rule rules[] = {
 	{ "Nitrogen",     NULL,          NULL,   0,            1,         1,           0,           0,         -1 },
 	{ "mpv",          NULL,          NULL,   0,            1,         1,           0,           0,         -1 },
 	{ "feh",          NULL,          NULL,   0,            1,         1,           0,           0,         -1 },
+	{ "dolphin-emu",  NULL,          NULL,   0,            1,         1,           0,           0,         -1 },
 	{ "tabbed",       NULL,          NULL,   0,            0,         1,           0,           0,         -1 },
 	{ "Sxiv",         NULL,          NULL,   0,            0,         1,           0,           0,         -1 },
     { NULL,          "ncmpcpp",      NULL,   1 << 8,       0,         1,           0,           0,           0 },
