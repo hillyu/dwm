@@ -15,7 +15,7 @@ static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows sel
 static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 5;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
-static const int showsystray        = 0;     /* 0 means no systray */
+static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = {
@@ -73,7 +73,7 @@ static const Rule rules[] = {
 	{ "Firefox",      NULL,          NULL,   1 << 8,       0,         0,           0,           0,         -1 },
     { NULL,           "douban",      NULL,   1<<8,         1,         1,           0,           0,         0  },
     { "Pavucontrol",  NULL,          NULL,   0,            1,         1,           0,           0,         -1 },
-    { "prompt",       NULL,          NULL,   0,            1,         1,           1,          0,          -1 },
+    { "floating",       NULL,          NULL,   0,            1,         1,           1,          0,          -1 },
 	{ NULL,           NULL,   "Event Tester",0,            0,         0,           0,          1,           -1 }, /* xev */
 	//{ "Rofi",         "rofi",        NULL,   0,            0,         0,           0,          1,           -1 }, [> xev <]
 	{ "st",           NULL,          NULL,   0,            0,         0,           1,          0,           -1 },
@@ -83,6 +83,7 @@ static const Rule rules[] = {
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 //#include "fibonacci.c"
 static const Layout layouts[] = {
@@ -109,8 +110,9 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "rofi", "-show", "combi", "-m", "-4", NULL};
 static const char *clip[] = { "clipmenu", "-p", "clipboard", NULL};
-static const char *tmux[]  = { "st", "-c", "prompt", "-g", "130x38", "tmux_run.sh", NULL};
-static const char *termcmd[]  = { "st", NULL};
+/* static const char *tmux[]  = { "st", "-c", "floating", "-g", "130x38", "tmux_run.sh", NULL}; */
+static const char *tmux[]  = { "alacritty", "--class", "floating", "-e", "tmux_run.sh", NULL};
+static const char *termcmd[]  = { "alacritty", NULL};
 static const char *snapshot_full[]  = { "flameshot", "full", "-c", "-p", "/home/hill/Pictures/screenshot/" , NULL};
 static const char *snapshot[]  = { "flameshot", "gui" , NULL};
 static const char *brightness_minus[]  = { "brightness", "1%-" , NULL};
@@ -119,18 +121,18 @@ static const char *volume_down[]  = {"volume", "-5%" , NULL};
 static const char *volume_up[]  = {"volume", "+5%" , NULL};
 static const char *mute[]  = {"volume", "mute", NULL};
 static const char *micmute[]  = {"micmute", NULL, NULL};
-static const char *activityMon[]  = {"st", "-c", "prompt", "gotop", NULL};
-static const char *conf[]  = {"st", "-c", "prompt", "vim", "/home/hill/src/dwm/config.h", NULL};
-static const char *diary[]  = {"st", "-c", "prompt", "vim", "-c" ":VimwikiDiaryIndex", NULL};
+static const char *activityMon[]  = {"st", "-c", "floating", "gotop", NULL};
+static const char *conf[]  = {"st", "-c", "floating", "vim", "/home/hill/src/dwm/config.h", NULL};
+static const char *diary[]  = {"st", "-c", "floating", "vim", "-c" ":VimwikiDiaryIndex", NULL};
 static const char *arandr[]  = {"autorandr", "-c", NULL};
 static const char *syncpackage[]  = {"st_hold", "yay", "-Syu", NULL};
-static const char *nnn[]  = {"st", "-g", "150x43", "-c", "prompt", "n", NULL};
-static const char *errjournal[]  = {"st", "-c", "prompt", "journalctl", "-xe", NULL};
-static const char *reddit[]  = {"st", "-c", "prompt", "rtv", NULL};
+static const char *nnn[]  = {"st", "-g", "150x43", "-c", "floating", "n", NULL};
+static const char *errjournal[]  = {"st", "-c", "floating", "journalctl", "-xe", NULL};
+static const char *reddit[]  = {"st", "-c", "floating", "rtv", NULL};
 static const char *m_prev[]  = {"mpc", "prev", NULL };
 static const char *m_play[]  = {"mpc", "toggle", NULL};
 static const char *m_next[]  = {"mpc", "next", NULL};
-static const char *mail[]  = {"st", "-c", "prompt", "neomutt", NULL};
+static const char *mail[]  = {"st", "-c", "floating", "neomutt", NULL};
 
 
 
