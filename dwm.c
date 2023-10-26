@@ -200,7 +200,6 @@ static void clientmessage(XEvent *e);
 static void configure(Client *c);
 static void configurenotify(XEvent *e);
 static void configurerequest(XEvent *e);
-static void copyvalidchars(char *text, char *rawtext);
 static Monitor *createmon(void);
 static void cyclelayout(const Arg *arg);
 static void destroynotify(XEvent *e);
@@ -219,6 +218,7 @@ static Atom getatomprop(Client *c, Atom prop);
 static int getrootptr(int *x, int *y);
 static long getstate(Window w);
 static pid_t getstatusbarpid();
+static unsigned int getsystraywidth();
 static int gettextprop(Window w, Atom atom, char *text, unsigned int size);
 static void grabbuttons(Client *c, int focused);
 static void grabkeys(void);
@@ -265,7 +265,6 @@ static void setmfact(const Arg *arg);
 static void setup(void);
 static void seturgent(Client *c, int urg);
 static void showhide(Client *c);
-static void sigchld(int unused);
 static void sigstatusbar(const Arg *arg);
 static void spawn(const Arg *arg);
 static Monitor *systraytomon(Monitor *m);
@@ -875,18 +874,6 @@ configurerequest(XEvent *e)
 	XSync(dpy, False);
 }
 
-void
-copyvalidchars(char *text, char *rawtext)
-{
-	int i = -1, j = 0;
-
-	while(rawtext[++i]) {
-		if ((unsigned char)rawtext[i] >= ' ') {
-			text[j++] = rawtext[i];
-		}
-	}
-	text[j] = '\0';
-}
 
 Monitor *
 createmon(void)
@@ -2234,14 +2221,6 @@ showhide(Client *c)
 		XMoveWindow(dpy, c->win, WIDTH(c) * -2, c->y);
 	}
 }
-
-/* void */
-/* sigchld(int unused) */
-/* { */
-/* 	if (signal(SIGCHLD, sigchld) == SIG_ERR) */
-/* 		die("can't install SIGCHLD handler:"); */
-/* 	while (0 < waitpid(-1, NULL, WNOHANG)); */
-/* } */
 
 
 void
