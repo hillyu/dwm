@@ -3,7 +3,7 @@
 
 
 /* appearance */
-static const unsigned int borderpx  = 0;        /* border pixel of windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 1;        /* 1 means swallow floating windows by default */
 static const unsigned int gappih    = 20;       /* horiz inner gap between windows */
@@ -27,7 +27,7 @@ static const char dmenufont[]       = "monospace:size=10";
 //static const char col_gray1[]       = "#222222";
 static const char col_gray1[]       = "#2d303b";
 //static const char col_gray2[]       = "#444444";
-static const char col_gray2[]       = "#5294e2";
+static const char col_gray2[]       = "#000000";
 //static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray3[]       = "#c4cbd4";
 //#7c818c
@@ -58,22 +58,24 @@ static const Rule rules[] = {
 	{ "dolphin-emu",  NULL,          NULL,   0,            1,         1,           0,           0,         -1 },
 	{ "tabbed",       NULL,          NULL,   0,            0,         1,           0,           0,         -1 },
 	{ "Sxiv",         NULL,          NULL,   0,            0,         1,           0,           0,         -1 },
-    { NULL,          "ncmpcpp",      NULL,   1 << 8,       0,         1,           0,           0,          0 },
-	{ "Sxiv",        "cover",        NULL,   1 << 8,       0,         1,           0,           0,         0 },
-	{ NULL,           "owa",         NULL,   1 << 1,       0,         0,           0,           0,         1  },
-	{ NULL,           "teams",       NULL,   1 << 1,       0,         0,           0,           0,         1  },
+    { NULL,          "ncmpcpp",      NULL,   1 << 8,       0,         1,           0,           0,          1 },
+	{ "Sxiv",        "cover",        NULL,   1 << 8,       0,         1,           0,           0,         1 },
+	{ NULL,           "owa",         NULL,   1 << 1,       0,         0,           0,           0,         0  },
+	{ NULL,           "teams",       NULL,   1 << 1,       0,         0,           0,           0,         0  },
 	{ NULL,           "onedrive",    NULL,   1 << 6,       0,         0,           0,           0,         1  },
 	{ NULL,           "RapidBoard",  NULL,   1 << 2,       0,         0,           0,           0,         1  },
 	{ NULL,           "display",     NULL,   1 << 3,       0,         0,           0,           0,         1  },
     { NULL,           "paper",       NULL,   1 << 3,       0,         0,           0,           0,         1  },
 	{ NULL,           "kanbanflow",  NULL,   1 << 2,       0,         0,           0,           0,         1  },
-	{ NULL,           "wechat",      NULL,   1 << 7,       1,         1,           0,           0,         0  },
+	{ NULL,           "wechat",      NULL,   1 << 7,       1,         1,           0,           0,         1  },
+	{ "weixin",       NULL,          NULL,   1 << 7,       1,         1,           0,           0,         1  },
 	{ NULL,           "whatsapp",    NULL,   1 << 7,       1,         1,           0,           0,         1  },
     { NULL,    "merriam-webster",    NULL,   0,            1,         1,           0,           0,         -1  },
 	{ "Firefox",      NULL,          NULL,   1 << 8,       0,         0,           0,           0,         -1 },
     { NULL,           "douban",      NULL,   1<<8,         1,         1,           0,           0,         0  },
     { "Pavucontrol",  NULL,          NULL,   0,            1,         1,           0,           0,         -1 },
-    { "floating",       NULL,          NULL,   0,            1,         1,           1,          0,          -1 },
+    { "floating",       NULL,        NULL,   0,            1,         1,           1,          0,          -1 },
+    { NULL,    "Teams Notification", NULL,   0,            1,         1,           0,          0,          -1 },
 	{ NULL,           NULL,   "Event Tester",0,            0,         0,           0,          1,           -1 }, /* xev */
 	//{ "Rofi",         "rofi",        NULL,   0,            0,         0,           0,          1,           -1 }, [> xev <]
 	{ "st",           NULL,          NULL,   0,            0,         0,           1,          0,           -1 },
@@ -110,6 +112,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "rofi", "-show", "combi", "-m", "-4", NULL};
 static const char *clip[] = { "clipmenu", "-p", "clipboard", NULL};
+/* static const char *clip[] = { "clipman", "pick", "-t", "rofi", NULL}; */
 /* static const char *tmux[]  = { "st", "-c", "floating", "-g", "130x38", "tmux_run.sh", NULL}; */
 static const char *tmux[]  = { "alacritty", "--class", "floating", "-e", "tmux_run.sh", NULL};
 static const char *termcmd[]  = { "alacritty", NULL};
@@ -127,13 +130,18 @@ static const char *conf[]  = {"alacritty", "--class", "floating", "-e", "vim", "
 static const char *diary[]  = {"st", "-c", "floating", "vim", "-c" ":VimwikiDiaryIndex", NULL};
 static const char *arandr[]  = {"autorandr", "-c", NULL};
 static const char *syncpackage[]  = {"st_hold", "yay", "-Syu", NULL};
-static const char *nnn[]  = {"st", "-g", "150x43", "-c", "floating", "n", NULL};
+/* static const char *nnn[]  = {"st", "-g", "150x43", "-c", "floating", "n", NULL}; */
+static const char *nnn[]  = {"_nnn", NULL};
+static const char *papis[] = {"_papis", NULL};
 static const char *errjournal[]  = {"st", "-c", "floating", "journalctl", "-xe", NULL};
+static const char *bootjournal[]  = {"st", "-c", "floating", "journalctl", "-k", NULL};
 static const char *reddit[]  = {"st", "-c", "floating", "rtv", NULL};
 static const char *m_prev[]  = {"mpc", "prev", NULL };
 static const char *m_play[]  = {"mpc", "toggle", NULL};
 static const char *m_next[]  = {"mpc", "next", NULL};
 static const char *mail[]  = {"st", "-c", "floating", "neomutt", NULL};
+static const char *screenlock[]  = {"_screenlock", NULL};
+static const char *wallpaper[]  = {"_wallpaper", NULL};
 
 
 
@@ -154,7 +162,7 @@ static Key keys[] = {
     { 0,        XF86XK_AudioMicMute,           spawn,          {.v = micmute } },
     { 0,        XF86XK_MonBrightnessDown,      spawn,          {.v = brightness_minus } },
     { 0,        XF86XK_MonBrightnessUp,        spawn,          {.v = brightness_plus } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
+	/* { MODKEY,                       XK_b,      togglebar,      {0} }, */
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
@@ -187,10 +195,12 @@ static Key keys[] = {
     { MODKEY,                       XK_c,      spawn,          {.v = conf } },
     { MODKEY,                       XK_a,      spawn,          {.v = activityMon } },
     { MODKEY,                       XK_x,      spawn,          {.v = errjournal } },
+    { MODKEY|ShiftMask,             XK_x,      spawn,          {.v = bootjournal } },
     { MODKEY,                       XK_p,      spawn,          {.v = arandr } },
     { MODKEY,                       XK_r,      spawn,          {.v = reddit } },
     { MODKEY,                       XK_s,      spawn,          {.v = syncpackage } },
     { MODKEY,                       XK_n,      spawn,          {.v = nnn } },
+    { MODKEY,                       XK_b,      spawn,          {.v = papis } },
     { MODKEY,                       XK_m,      spawn,          {.v = mail } },
     { MODKEY,                       XK_v,      spawn,          {.v = clip } },
 	//{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
@@ -203,6 +213,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+    { MODKEY|ShiftMask,             XK_l,      spawn,          {.v = screenlock } },
+    { MODKEY,                       XK_w,      spawn,          {.v = wallpaper } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
