@@ -21,7 +21,8 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = {
     "Fixedsys Excelsior MonoL:size=9",
     "PingFang SC:size=9",
-    "FontAwesome:size=9",
+    "Font Awesome 5 Free Solid:size=8",
+    "FontAwesome:size=8",
     };
 static const char dmenufont[]       = "monospace:size=10";
 //static const char col_gray1[]       = "#222222";
