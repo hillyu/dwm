@@ -75,7 +75,8 @@ static const Rule rules[] = {
     { NULL,           "douban",      NULL,   1<<8,         1,         1,           0,           0,         0  },
     { "Pavucontrol",  NULL,          NULL,   0,            1,         1,           0,           0,         -1 },
     { "floating",       NULL,        NULL,   0,            1,         1,           1,          0,          -1 },
-    { NULL,    "Teams Notification", NULL,   0,            1,         1,           0,          0,          -1 },
+    { "prompt",       NULL,        NULL,   0,            1,         1,           1,          0,          -1 },
+    { NULL, NULL, "Teams Notification",      0,            1,         1,           0,          0,          -1 },
 	{ NULL,           NULL,   "Event Tester",0,            0,         0,           0,          1,           -1 }, /* xev */
 	//{ "Rofi",         "rofi",        NULL,   0,            0,         0,           0,          1,           -1 }, [> xev <]
 	{ "st",           NULL,          NULL,   0,            0,         0,           1,          0,           -1 },
