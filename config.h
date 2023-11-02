@@ -142,7 +142,7 @@ static const char *reddit[]  = {"st", "-c", "floating", "rtv", NULL};
 static const char *m_prev[]  = {"mpc", "prev", NULL };
 static const char *m_play[]  = {"mpc", "toggle", NULL};
 static const char *m_next[]  = {"mpc", "next", NULL};
-static const char *mail[]  = {"st", "-c", "floating", "neomutt", NULL};
+static const char *mail[]  = {"alacritty", "--class", "floating", "-e", "neomutt", NULL};
 static const char *screenlock[]  = {"_screenlock", NULL};
 static const char *wallpaper[]  = {"_wallpaper", NULL};
 
@@ -170,10 +170,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
-	{ MODKEY,                       XK_h,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_l,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_u,      setmfact,       {.f = -0.01} },
-	{ MODKEY,                       XK_i,      setmfact,       {.f = +0.01} },
+	{ MODKEY,                       XK_u,      incnmaster,     {.i = +1 } },
+	{ MODKEY,                       XK_i,      incnmaster,     {.i = -1 } },
+	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.01} },
+	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.01} },
 	{ MODKEY,                       XK_space,  zoom,           {0} },
 	{ ControlMask,                  XK_Tab,    view,           {0} },
 	{ ControlMask,                  XK_q,      killclient,     {0} },
